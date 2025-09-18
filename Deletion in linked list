@@ -1,0 +1,288 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+
+//it will delete frist node;
+struct connect{
+	int data;
+	struct connect*next;
+};
+
+//deletion by two pointer
+
+//deletion of first node
+struct connect* deleteatfrist(struct connect*head){
+	int i,element[100];
+	struct connect*p;
+	p=head;//give head(frist) to p and 
+	//shift head to second 
+	//remove frist (remove p)
+head=head->next;
+	free(p);
+i=0;	
+ do{
+  	
+  cout<< "after deletion of frist node:("<<i+1<<"),element is:"<<	head->data<<"\n"<<endl;
+  //to store element in array
+  element[i]=head->data;
+  head=head->next;
+  i++;
+ } while(head!=NULL);
+ 
+ cout<< "{";
+  	for (int j=0;j<i;j++){
+  		    
+ cout<<"  "<<element[j]<<",";
+
+  }
+cout<< "}"<<endl; 
+
+ 
+  return head;
+  
+}
+
+
+
+//deletion in between 
+
+struct connect*deletioninbetween(struct connect*head,int index){
+int i,element[100];
+connect*p=head;
+  connect*q=p->next;
+  //to access index a bit same to array
+ for(int i=0; i<index-1 && q!=NULL;i++)
+ {
+  p=p->next;
+  q=q->next;
+}
+ 
+ if(q==NULL){
+ 	cout<<"nothing .."<<endl;
+ }
+ 
+ p->next=q->next;
+ 	free(q);
+ 	//free memory 
+ 	//take a new pointer that will run start to end aftet deletion;
+ connect*temp=head;
+ i=0;
+ while(temp!=NULL)
+ {
+ cout<<"atfer deletion of node in between:( "<<i+1<<"),element is : "<<temp->data<<"\n"<<endl;
+ //to store element in array 
+     element[i]=temp->data;
+ 	temp=temp->next;
+ 	i++;
+ }
+ //for printing array element[];
+  cout<< "{";
+  	for (int j=0;j<i;j++){
+  		    
+ cout<<"  "<<element[j]<<",";
+
+  }
+cout<< "}"<<endl; 
+ 
+return head;
+	
+}
+
+
+//IT will just print all element of linked list
+
+void treversal(struct connect*ptr){
+  int  i,element[100];
+ i=0;
+  while(ptr!=NULL){
+ cout<<"("<<" "<<i+1 <<" ),element of linked list :"<<ptr->data<<"\n"<<endl;
+  	element[i]=ptr->data;//to store element in array;
+  	 ptr=ptr->next;
+  	i++;
+  }
+     //to print the element ;
+     cout<< "{";
+  	for (int j=0;j<i;j++){
+  		    
+ cout<<"  "<<element[j]<<",";
+
+  }
+cout<< "}"<<endl;
+}
+
+
+
+
+//it will cut the last element (deletion at end)
+
+struct connect*deletioninend(struct connect*head){
+connect*p=head;//decleare pointer;
+  connect*q=p->next;
+  int i,element[100];
+  while(q->next!=NULL){
+  	p=p->next;
+  	q=q->next;
+  	i++;
+  
+  }
+  p->next=NULL;
+  free(q);//free memory occupied by q;
+  
+  
+    cout<< "_______________:"<<"\n"<<endl;
+  connect*tempp=head;
+  
+  i=0;
+   do{
+    
+     	
+  cout<< "after deletion of end node:( "<<i+1<<" ) ,element is,"<<tempp->data<<"\n"<<endl;
+
+  //to store element of linked list in element[];
+  element[i]=tempp->data;
+  tempp=tempp->next;
+  
+  i++;
+ } while(tempp!=NULL);
+
+  //to print the element ;
+     cout<< "{";
+  	for (int j=0;j<i;j++){
+  		    
+ cout<<"  "<<element[j]<<",";
+
+  }
+cout<< "}"<<endl;
+ 
+return head;
+	
+}
+
+
+
+
+
+
+
+int main()
+{
+	int choice;
+	char decision;
+	  connect*head;
+	 connect*second;
+	 connect*third;
+	 connect*fourth;
+	 
+	 head=new connect;
+	 second=new connect;
+	 third=new connect;
+	 fourth=new connect;
+	 
+	 head->data=8;
+	 head->next=second;
+	 //deletion of frist node
+	 
+	 second->data=9;
+	 second->next=third;
+	 
+	 third->data=6;
+	 third->next=fourth;
+	 
+	 fourth->data=4;
+	 fourth->next=NULL;
+	
+		
+	
+	 		
+   	cout<< "::******::::::******:::::%%%%%%%%%%%%%%%::::::::::::::::::*****::::::::::::::####::::::::::::*****:::::::*****::::::::::"<<endl;		
+
+	 
+	 
+	cout<< "::******::::::******:::::%%%%%%%%%%%%%%%::::::::::::::::::*****::::::::::::::####::::::::::::*****:::::::*****::::::::::"<<"\n"<<endl; 
+	
+				 	 						
+cout<<"\t"<<"-***LINKED LIST DELETION OPERETIONS****---"<<"\n"<<endl;
+
+	cout<< "::******::::::******:::::%%%%%%%%%%%%%%%::::::::::::::::::*****::::::::::::::####::::::::::::*****:::::::*****::::::::::"<<"\n"<<endl; 
+	 do{
+	 cout<<"\n"<<endl;
+	 cout<< "::::::::::::::::::::*****_________________:"<<"\n"<<endl;
+	 cout<< "::::::::::::::::::::*****_______________:"<<"\n"<<endl;
+	 
+	  cout<<"   (1)_number one presentation :"<<"\n"<<endl;
+	 
+	 	 cout<<"  (2)_number two deletion of frist node :"<<"\n"<<endl;
+	 cout<<"  (3)_number three deletion of node in between  :"<<"\n"<<endl;
+	 cout<<"  (4)__ deletion of node in end:"<<"\n"<<endl;
+	  cout<< "_______*************************________:"<<"\n"<<endl;
+	  
+	   cout<<"\t\t"<< "enter your choice :"<<"\n"<<endl;
+	 
+	 cin>>choice;
+	 
+	 switch(choice){
+	 case 1:
+	  cout<< "###############_______________:"<<"\n"<<endl;
+	 cout<<"   (1)_number one presentation :"<<"\n"<<endl;	 
+	 treversal(head);
+	  cout<< "###############_______________:"<<"\n"<<endl;
+	 cout<<"\n"<<endl;
+	 
+	 break;
+	 
+	 case 2:	 
+	  cout<< "################_______________:"<<"\n"<<endl;	 
+	 cout<<"  (2)_number two deletion of frist node :"<<"\n"<<endl;
+	 deleteatfrist(head);
+	  cout<< "################_______________:"<<"\n"<<endl;
+	 cout<<"\n"<<endl;
+	 break;
+	 
+	 	case 3:
+	 	 cout<< "################_______________:"<<"\n"<<endl;
+	 cout<<"  (3)_number three deletion of node in between  :"<<"\n"<<endl;
+	deletioninbetween(head,2);
+	 cout<< "################_______________:"<<"\n"<<endl;
+	cout<<"\n"<<endl;
+	   break;
+	   
+	   case 4:
+	    cout<< "################_______________:"<<"\n"<<endl;
+		 cout<<"  (4)__ deletion of node in end:"<<"\n"<<endl;
+	deletioninend(head);
+	 cout<< "################_______________:"<<"\n"<<endl;
+	cout<<"\n"<<endl;
+	break;
+	
+	default :
+	 cout<< "################_______________:"<<"\n"<<endl;
+	 cout<< " no match found ,try again !:"<<"\n"<<endl;
+	 
+	 }  
+    
+   cout<< "ENTER##:--To end:: E or y:: to continue :"<<"\n"<<endl;
+   
+   cin>>decision;
+   if(decision=='E'||decision=='e'||decision!='y'||decision!='Y'){
+   	break;
+   }
+   
+	 }while(decision=='Y'||decision=='y');
+    
+    
+    
+     
+      cout<< "::::****:::::****::::::::******::::::::_______________:"<<"\n"<<endl;
+	  cout<< "Program ends here ,thanks for visiting :"<<"\n"<<endl;
+	 cout<< "Created by :--********_____Pragati soni____******:::::::::*****:::::::*****"<<"\n"<<endl;
+	 
+	  
+	  
+	  
+	 return 0;
+}
+
+
+
+
